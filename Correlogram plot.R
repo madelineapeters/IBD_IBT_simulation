@@ -14,7 +14,13 @@ for (e in c(54, 56, 58)) {
   
 ############Set-up############ 
   #re-read in stats parameters for each core
-  source(file=paste("~/498/stats parameters.R"))
+  #source(file=paste("~/498/stats parameters.R"))
+  
+  no_neutral<-10
+  no_FL<-5
+  pop_size<-400
+  base_wd<- #folder where offspring_map file is stored
+  sub_wd<- #subfolder where offspring_map file is stored
   
   #select run
   r<-1

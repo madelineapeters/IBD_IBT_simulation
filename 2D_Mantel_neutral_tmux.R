@@ -1,9 +1,15 @@
 #load required packages
-library(ape)
+library(vegan)
 
-for (e in seq(from = 54, to = 64, by = 1)) {
+#set working directory
+base_wd<-"/data/madeline.peters/498"
+
+args <- commandArgs(trailingOnly = TRUE)
+e <- as.integer(args[1])
+
+#for (e in seq(from = 54, to = 64, by = 1)) {
 #set parameters
-no_runs<-10
+no_runs<-5
 FLmean<-100
 no_neutral<-10
 pop_size<-400
@@ -12,7 +18,7 @@ pop_size<-400
 for (r in 1:no_runs) {
 
   #set working directory
-  start_wd<-(paste("G:/", paste("para_set", e, sep="_"), paste("model_run_", r, sep=""), sep="/"))
+  start_wd<-(paste(base_wd, paste("para_set", e, sep="_"), paste("model_run_", r, sep=""), sep="/"))
   setwd(start_wd)
   
   #create dataframes to hold stats outputs
@@ -97,7 +103,6 @@ for (r in 1:no_runs) {
         #standardise the neutral distance matrix
         neut_dist_matrix<-(neut_dist_matrix-mean(neut_dist_matrix))/sd(neut_dist_matrix)
         
-        library(ape)
         neut_mantel<-mantel.test(distance_matrix, neut_dist_matrix, nperm=1000)
         
         #store output from Mantel test
@@ -119,5 +124,5 @@ for (r in 1:no_runs) {
   
 } #end for loop over runs
 
-} #end for loop over parameter sets
+#} #end for loop over parameter sets
 
